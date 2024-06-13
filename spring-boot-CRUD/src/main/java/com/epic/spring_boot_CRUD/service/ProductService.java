@@ -23,13 +23,16 @@ public class ProductService {
         Product product = convertToEntity(productDTO);
         return convertToDTO(productRepository.save(product));
     }
+
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
+
     public ProductDTO getProductById(Long id){
         Product product = productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product Not Found"));
         return convertToDTO(product);
     }
+
     public ProductDTO updateProduct(Long id, ProductDTO productDetails){
         Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product Not Found"));
         product.setName(productDetails.getName());
@@ -38,6 +41,7 @@ public class ProductService {
         product.setQuantity(productDetails.getQuantity());
         return convertToDTO(productRepository.save(product));
     }
+
     public void deleteProduct(Long id){
         Product product = productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product Not Found"));
         productRepository.delete(product);
