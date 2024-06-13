@@ -4,6 +4,7 @@ import com.epic.spring_boot_CRUD.dto.ProductDTO;
 import com.epic.spring_boot_CRUD.entity.Product;
 import com.epic.spring_boot_CRUD.exception.ProductNotFoundException;
 import com.epic.spring_boot_CRUD.repository.ProductRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ public class ProductService {
 
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    ModelMapper modelmapper;
 
     public ProductDTO createProduct(ProductDTO productDTO){
         Product product = convertToEntity(productDTO);
@@ -27,41 +30,24 @@ public class ProductService {
         Product product = productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product Not Found"));
         return convertToDTO(product);
     }
-    public Product updateProduct(Long id, Product productDetails){
+    public ProductDTO updateProduct(Long id, ProductDTO productDetails){
         Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product Not Found"));
         product.setName(productDetails.getName());
         product.setDescription(productDetails.getDescription());
         product.setPrice(productDetails.getPrice());
         product.setQuantity(productDetails.getQuantity());
-        return productRepository.save(product);
+        return convertToDTO(productRepository.save(product));
     }
     public void deleteProduct(Long id){
-        productRepository.deleteById(id);
+        Product product = productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product Not Found"));
+        productRepository.delete(product);
     }
 
-    public static ProductDTO convertToDTO(Product product){
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setId(product.getId());
-        productDTO.setName(product.getName());
-        productDTO.setDescription(product.getDescription());
-        productDTO.setPrice(product.getPrice());
-        product.setQuantity(product.getQuantity());
-        return productDTO;
+    public ProductDTO convertToDTO(Product product){
+        return modelmapper.map(product, ProductDTO.class);
     }
 
-    public static Product convertToEntity(ProductDTO productDTO){
-        Product product = new Product();
-        product.setName(productDTO.getName());
-        product.setDescription(productDTO.getDescription());
-        product.setPrice(productDTO.getPrice());
-        product.setQuantity(productDTO.getQuantity());
-        return product;
-    }
-
-    public void updateEntity(Product product, ProductDTO productDTO){
-        product.setName(productDTO.getName());
-        product.setDescription(productDTO.getDescription());
-        product.setPrice(productDTO.getPrice());
-        product.setQuantity(productDTO.getQuantity());
+    public Product convertToEntity(ProductDTO productDTO){
+        return modelmapper.map(productDTO, Product.class);
     }
 }
