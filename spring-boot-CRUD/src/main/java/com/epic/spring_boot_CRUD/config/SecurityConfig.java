@@ -35,32 +35,12 @@ public class SecurityConfig {
     @Value("${jwt.key}")
     private String jwtKey;
 
-
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return username -> {
-//            com.epic.spring_boot_CRUD.entity.User user = userService.findByUsername(username);
-//                    if (user == null){
-//                        throw new UsernameNotFoundException("User not found!");
-//                    }
-//                    return org.springframework.security.core.userdetails.User
-//                            .withUsername(user.getUsername())
-//                            .password("{noop}2003")
-//                            .build();
-//        };
-//        return new InMemoryUserDetailsManager(
-//                User.withUsername("dvega")
-//                        .password("{noop}password")
-//                        .build());
-//    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( auth -> auth
-                        .requestMatchers("/api/auth/token","/api/auth/register").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/api/auth/token","/api/auth/register").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
