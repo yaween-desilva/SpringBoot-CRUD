@@ -3,9 +3,9 @@ A simple RESTful web service that performs basic CRUD (Create, Read, Update, Del
 
 **How to Use**: 
 You will need the follwoing softwares in order to run the project.
-  IDE - Run the SpringBoot project
-  XAMPP control panel - Activate the server and start the SQL port
-  POSTMAN - To check the API requests
+- IDE : Run the SpringBoot project
+- XAMPP control panel : Activate the server and start the SQL port
+- POSTMAN : To check the API requests
 
 The API endpoints used in this projet are secured with spring security and JWT therefore it cannot be accessed unless the user receive a bearer Token. The following steps will demonstarte how to receive a bearer token and access the secure APis.   
 
