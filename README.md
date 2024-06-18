@@ -9,7 +9,7 @@ You will need the follwoing softwares in order to run the project.
 
 The API endpoints used in this projet are secured with spring security and JWT therefore it cannot be accessed unless the user receive a bearer Token. The following steps will demonstarte how to receive a bearer token and access the secure APis.
 
-**Step 01:** Open the XAMPP control panel and start Apache server and MySQL server. <br/>
+##**Step 01:** Open the XAMPP control panel and start Apache server and MySQL server. <br/>
 
 ![Screenshot (361)](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/bdee0c4c-f941-4b8a-a02e-fc418895b9b1)
 
