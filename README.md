@@ -11,6 +11,8 @@ The API endpoints used in this projet are secured with spring security and JWT t
 
 Step 01: Open the XAMPP control panel and start Apache server and MySQL server.
 
+![Screenshot (361)](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/bdee0c4c-f941-4b8a-a02e-fc418895b9b1)
+
 Step 02: Run the project using a preffered IDE and checks whether the server is up and running on the port that you have assigned it to be.
 
 Step 03: Then you have to access the registration API endpoint using POSTMAN software tool and the link is "http://localhost:8090/api/auth/register". Then you have to enter a username and password for the registration and it has to be in JSON format. After sending the request through POST method you will receive a message indicating whether the registration was succesfull or not.
