@@ -25,6 +25,7 @@ public class ProductService {
 
     //Method to create a new method
     public ProductDTO createProduct(ProductDTO productDTO){
+        productDTO.setId(null);
         Product product = convertToEntity(productDTO);
         return convertToDTO(productRepository.save(product));
     }

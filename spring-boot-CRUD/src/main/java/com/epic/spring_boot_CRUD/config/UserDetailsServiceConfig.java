@@ -29,10 +29,5 @@ public class UserDetailsServiceConfig {
                     .build();
         };
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }
 
