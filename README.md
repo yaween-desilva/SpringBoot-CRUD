@@ -1,7 +1,6 @@
 # SpringBoot-CRUD
 A simple RESTful web service that performs basic CRUD (Create, Read, Update, Delete) operations on a resource using Java Spring Boot framework.
 
-**How to Use**: 
 You will need the follwoing softwares in order to run the project.
 - IDE : Run the SpringBoot project
 - XAMPP control panel : Activate the server and start the SQL port
