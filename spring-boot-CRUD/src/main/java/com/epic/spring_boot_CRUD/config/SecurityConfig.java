@@ -2,6 +2,8 @@ package com.epic.spring_boot_CRUD.config;
 
 import com.epic.spring_boot_CRUD.service.UserService;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +45,9 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private UserService userService;
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
@@ -67,6 +72,21 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
     }
 
     @Bean
+    public UserDetailsService userDetailsService() {
+        return username -> {
+            com.epic.spring_boot_CRUD.entity.User user = userService.findByUsername(username);
+            if (user == null) {
+                throw new UsernameNotFoundException("User not found.");
+            }
+            return org.springframework.security.core.userdetails.User
+                    .withUsername(user.getUsername())
+                    .password(user.getPassword())
+                    .authorities("ROLE_USER")
+                    .build();
+        };
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
@@ -81,16 +101,31 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
     }
 
     @Bean
-    JwtEncoder jwtEncoder() {
-        return new NimbusJwtEncoder(new ImmutableSecret<>(jwtKey.getBytes()));
+    public JwtEncoder jwtEncoder() {
+        SecretKeySpec secretKey = new SecretKeySpec(jwtKey.getBytes(), "HmacSHA512");
+        JWKSource<SecurityContext> jwkSource = new ImmutableSecret<>(secretKey);
+        return new NimbusJwtEncoder(jwkSource);
     }
 
     @Bean
     public JwtDecoder jwtDecoder() {
         byte[] bytes = jwtKey.getBytes();
-        SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length,"RSA");
+        SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length,"HmacSHA512");
         return NimbusJwtDecoder.withSecretKey(originalKey).macAlgorithm(MacAlgorithm.HS512).build();
     }
+
+//    @Bean
+//    JwtEncoder jwtEncoder() {
+//        return new NimbusJwtEncoder(new ImmutableSecret<>(jwtKey.getBytes()));
+//    }
+
+
+//    @Bean
+//    public JwtDecoder jwtDecoder() {
+//        byte[] bytes = jwtKey.getBytes();
+//        SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length,"RSA");
+//        return NimbusJwtDecoder.withSecretKey(originalKey).macAlgorithm(MacAlgorithm.HS512).build();
+//    }
 
 
 }

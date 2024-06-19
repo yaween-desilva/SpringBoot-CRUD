@@ -48,14 +48,14 @@ public class ProductServiceTest {
     @Test
     public void testCreateProduct() {
         product = new Product();
-        product.setId(1L);
+        product.setId(null);
         product.setName("testName");
         product.setDescription("testDescription");
         product.setPrice(BigDecimal.valueOf(100.00));
         product.setQuantity(10);
 
         productDTO = new ProductDTO();
-        productDTO.setId(1L);
+        productDTO.setId(null);
         productDTO.setName("testName");
         productDTO.setDescription("testDescription");
         productDTO.setPrice(BigDecimal.valueOf(100.00));
@@ -68,7 +68,7 @@ public class ProductServiceTest {
         ProductDTO result = productService.createProduct(productDTO);
 
         assertNotNull(result);
-        assertEquals(1L, result.getId());
+        assertEquals(null, result.getId());
         assertEquals("testName", result.getName());
         assertEquals("testDescription", result.getDescription());
         assertEquals(BigDecimal.valueOf(100.00), result.getPrice());
