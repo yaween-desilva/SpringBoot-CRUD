@@ -3,7 +3,6 @@ package com.epic.spring_boot_CRUD.service;
 import com.epic.spring_boot_CRUD.dto.ProductDTO;
 import com.epic.spring_boot_CRUD.entity.Product;
 import com.epic.spring_boot_CRUD.repository.ProductRepository;
-import com.epic.spring_boot_CRUD.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

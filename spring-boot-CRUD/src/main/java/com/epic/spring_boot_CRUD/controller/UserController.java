@@ -2,7 +2,6 @@ package com.epic.spring_boot_CRUD.controller;
 
 import com.epic.spring_boot_CRUD.entity.User;
 import com.epic.spring_boot_CRUD.service.UserService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

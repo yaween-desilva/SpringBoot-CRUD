@@ -1,7 +1,6 @@
 package com.epic.spring_boot_CRUD.controller;
 
 import com.epic.spring_boot_CRUD.config.TestConfig;
-import com.epic.spring_boot_CRUD.controller.ProductController;
 import com.epic.spring_boot_CRUD.dto.ProductDTO;
 import com.epic.spring_boot_CRUD.service.ProductService;
 import com.epic.spring_boot_CRUD.service.TokenService;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.*;

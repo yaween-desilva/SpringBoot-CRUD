@@ -2,8 +2,6 @@ package com.epic.spring_boot_CRUD.controller;
 
 import com.epic.spring_boot_CRUD.entity.User;
 import com.epic.spring_boot_CRUD.service.TokenService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
