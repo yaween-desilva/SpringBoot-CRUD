@@ -1,5 +1,6 @@
 package com.epic.spring_boot_CRUD.config;
 
+import com.epic.spring_boot_CRUD.entity.User;
 import com.epic.spring_boot_CRUD.service.UserService;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import com.nimbusds.jose.jwk.source.JWKSource;
@@ -73,7 +74,7 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
-            com.epic.spring_boot_CRUD.entity.User user = userService.findByUsername(username);
+            User user = userService.findByUsername(username);
             if (user == null) {
                 throw new UsernameNotFoundException("User not found.");
             }
