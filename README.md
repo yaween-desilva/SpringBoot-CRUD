@@ -49,7 +49,8 @@ Finally we have to access the secured API and since we have already set up the t
 ![Accessing secured API](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/537abbe9-58c0-4234-8a02-da7a10dea461)
 
 ## Note
-You do not need to setup environment and use scripts mandatorily to get the expected output. I did mention it to make the process easy
+- You do not need to setup environment and use scripts mandatorily to get the expected output. I did mention it to make the process easy
+- I have used a base url which i set it up as a variable in the environment so we can use that instead of typing the long url. This is also not mandatory.
 
 
 
