@@ -19,23 +19,42 @@ Run the project using a preffered IDE and checks whether the server is up and ru
 ![Screenshot (362)](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/c7c3691b-fe3b-4f55-88d6-98cb34908fcd)
 
 ## Step 03
-Then you have to access the registration API endpoint using POSTMAN software tool and the link is "http://localhost:8090/api/auth/register". Then you have to enter a username and password for the registration and it has to be in JSON format. After sending the request through POST method you will receive a message indicating whether the registration was succesfull or not.
+Now we have to use Postman software to check the results when we invoke API endpoints. First we have to set up an environment and add a variable as Token and keep the value null. The use of this environment is to pass the current token value as a varibale therefore we dont need to update token everytime this will automatically updates the latest token to its current value.
 
-![Screenshot (364)](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/1ecc6f78-7118-4e7e-94c9-9eb63e68a12b)
+![Setting up environment](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/df469a0b-be5e-44cf-ae98-fcb0baf63997)
 
-## Step 04 
-Now you have to access the token API endpoint endpoint using POSTMAN software tool and the link is "http://localhost:8090/api/auth/token". Then you have to go to the authorization tab and select Basic Auth. After that you can enter the username and passoword that you have entered in the registration process and send the request using POST method. Then you will receive a Token and that is the bearer token that can be used access the secured APIs.
+## Step 04
+After that we have to write a script in the token receiving API to pass it to the secured APIs automatically so that we dont need to enter the bearer token each time we get.
 
-![Screenshot (365)](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/791c2e70-21d5-4ab0-bc68-0d86dae7155b)
+![Passing the token to secured APIs](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/e761411f-6f1f-48c1-bb88-60bb3496be6d)
 
 ## Step 05
-Now you can select any preffered endpoint in your controller which is secured and go to the Authorization tab and select "Bearer Token" and enter the token you received in the previous step. Now you can access the API endpoints that were secured early.
+Then we have to pass the reference to all the secured methods which is the final step of setting the automatic token transfering process. We have to selct bearer token field from authorization tab to enter this.
 
-![Screenshot (366)](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/a18d30ee-3368-4c6f-a9fa-85009b22c96f)
+![Setting Token to all methods](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/4b31e903-bed6-4dcc-8606-c4bdacf1ae38)
+
+## Step 06
+As all the setting up is done now we have to register as a new user by entering a username and password. We have to use POST request and send the credentilas using JSON format. You will receive a message upon successfull registration.
+
+![Registering a User](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/e516b74c-96d2-486a-aaa8-ffa3d9e8dfdc)
+
+## Step 07
+Then we have to login to genrate and receive a token. We have to use the registred credentials here and send the details in JSON format as a POST request. So you will receive Token upon successfull login.
+
+![Login in and recieving the Token](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/c963194f-b293-4621-99b0-b0b9e5bc3478)
+
+## Step 08
+Finally we have to access the secured API and since we have already set up the token trnasfering process, once we invoke the endpoint it will give the result in status 200.
+
+![Accessing secured API](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/537abbe9-58c0-4234-8a02-da7a10dea461)
 
 ## Note
-You can chnage the database connection by accessing the application properties in the project and connect it to your own database.
+You do not need to setup environment and use scripts mandatorily to get the expected output. I did mention it to make the process easy
 
-![Screenshot (363)](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/80fd4189-c34a-4666-bff3-35386642e4d3)
+
+
+
+
+
 
 
