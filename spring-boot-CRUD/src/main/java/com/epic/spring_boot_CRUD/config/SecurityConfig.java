@@ -54,6 +54,7 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
     }
 
     @Bean
+    //Method to BCrypt the encoded password
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -91,7 +92,11 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( auth -> auth
+
+                        //Give access to following URLs without bearer token
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/api/auth/token","/api/auth/register").permitAll()
+
+                        //Authenticate all URLs
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -113,19 +118,5 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
         SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length,"HmacSHA512");
         return NimbusJwtDecoder.withSecretKey(originalKey).macAlgorithm(MacAlgorithm.HS512).build();
     }
-
-//    @Bean
-//    JwtEncoder jwtEncoder() {
-//        return new NimbusJwtEncoder(new ImmutableSecret<>(jwtKey.getBytes()));
-//    }
-
-
-//    @Bean
-//    public JwtDecoder jwtDecoder() {
-//        byte[] bytes = jwtKey.getBytes();
-//        SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length,"RSA");
-//        return NimbusJwtDecoder.withSecretKey(originalKey).macAlgorithm(MacAlgorithm.HS512).build();
-//    }
-
 
 }

@@ -15,7 +15,9 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    //User registration method
     public User registerUser(User user){
+        //Encoding password and store it in the database
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

@@ -22,6 +22,7 @@ public class TokenService {
         this.encoder = encoder;
     }
 
+    //method to generate the bearer token upon successful login
     public String generateToken(Authentication authentication) {
         Instant now = Instant.now();
         String scope = authentication.getAuthorities().stream()
