@@ -20,7 +20,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody User user){
         if(userService.findByUsername(user.getUsername()) != null){
-            return ResponseEntity.badRequest().body("Username is not found");
+            return ResponseEntity.badRequest().body("Username is already taken");
         }
         userService.registerUser(user);
         return ResponseEntity.ok("User Registered Successfully");

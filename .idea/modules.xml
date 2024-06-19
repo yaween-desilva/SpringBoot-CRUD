@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/SpringBoot-CRUD.iml" filepath="$PROJECT_DIR$/.idea/SpringBoot-CRUD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-CRUD/spring-boot-CRUD.iml" filepath="$PROJECT_DIR$/spring-boot-CRUD/spring-boot-CRUD.iml" />
+    </modules>
+  </component>
+</project>
