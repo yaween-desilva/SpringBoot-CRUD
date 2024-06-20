@@ -32,13 +32,40 @@ public class ProductService {
         return convertToDTO(productRepository.save(product));
     }
 
-    //Method to retrieve all available products
-//    @Cacheable(value = "productsList", key = "#page + '-' + #size + '-' + #sortBy")
-//    @Cacheable(value = "productsList", key = "'page' + 0 + 'size' + 10 + 'sortBy' + #id")
+//    @Cacheable(value = "products", key = "#page" + "#size" + "#sortBy" )
+//    @Cacheable(value = "products", key = "#page + '-' + #size + '-' + #sortBy")
+//    public Page<ProductDTO> getAllProducts(int page, int size, String sortBy) {
+//        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+//        Page<Product> productPage = productRepository.findAll(pageable);
+//        Page<ProductDTO> dtoPage = productPage.map(product -> modelmapper.map(product, ProductDTO.class));
+//        return new PageWrapper<>(dtoPage).toPage();
+//    }
+
+//    @Cacheable(value = "products", key = "#page + '-' + #size + '-' + #sortBy")
     public Page<ProductDTO> getAllProducts(int page, int size, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        return productRepository.findAll(pageable).map(product -> modelmapper.map(product, ProductDTO.class));
+        Page<Product> productPage = productRepository.findAll(pageable);
+        return productPage.map(product -> modelmapper.map(product, ProductDTO.class));
     }
+
+
+////    @Cacheable(value = "products", key = "#page + '-' + #size + '-' + #sortBy")
+//    public Page<ProductDTO> getAllProducts(int page, int size, String sortBy) {
+//        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+//        Page<Product> productPage = productRepository.findAll(pageable);
+//        PageWrapper<ProductDTO> pageWrapper = new PageWrapper<>(
+//                productPage.map(product -> modelmapper.map(product, ProductDTO.class))
+//        );
+//        return pageWrapper.toPage();
+//    }
+
+    //Method to retrieve all available products
+//    @Cacheable(value = "productsList", key = "#page + '-' + #size + '-' + #sortBy")
+//    public Page<ProductDTO> getAllProducts(int page, int size, String sortBy) {
+//        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+//        return productRepository.findAll(pageable).map(product -> modelmapper.map(product, ProductDTO.class));
+//    }
+
 
     //Method to retrieve a product using the specific id of the product
     @Cacheable(value = "products", key = "#id")
