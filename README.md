@@ -29,7 +29,7 @@ After that we have to write a script in the token receiving API to pass it to th
 ![Passing the token to secured APIs](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/e761411f-6f1f-48c1-bb88-60bb3496be6d)
 
 ## Step 05
-Then we have to pass the reference to all the secured methods which is the final step of setting the automatic token transfering process. We have to selct bearer token field from authorization tab to enter this.
+Then we have to pass the reference to all the secured methods which is the final step of setting the automatic token transfering process. We have to select bearer token field from authorization tab to enter this.
 
 ![Setting Token to all methods](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/4b31e903-bed6-4dcc-8606-c4bdacf1ae38)
 
@@ -47,6 +47,11 @@ Then we have to login to genrate and receive a token. We have to use the registr
 Finally we have to access the secured API and since we have already set up the token trnasfering process, once we invoke the endpoint it will give the result in status 200.
 
 ![Accessing secured API](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/537abbe9-58c0-4234-8a02-da7a10dea461)
+
+### How to access different pages when calling getProducts method
+Use the getproduct url and additionally add the following line to it additionally. You can change the number in the page to view the page you want and page number starts with 0 which means to access page 1 you should put 0 infront of page in the URL.
+
+![Accessing Elements by pagination](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/f3146def-9daf-4504-83e0-1d8cb8417205)
 
 ## Note
 - You do not need to setup environment and use scripts mandatorily to get the expected output. I did mention it to make the process easy
