@@ -6,6 +6,9 @@ import com.epic.spring_boot_CRUD.exception.ProductNotFoundException;
 import com.epic.spring_boot_CRUD.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +24,7 @@ public class ProductService {
     ModelMapper modelmapper;
 
     //Method to create a new method
+    @CachePut(value = "products", key = "#result.id")
     public ProductDTO createProduct(ProductDTO productDTO){
         //Set the ID to null so that the ID will auto increment
         productDTO.setId(null);
@@ -29,18 +33,23 @@ public class ProductService {
     }
 
     //Method to retrieve all available products
+//    @Cacheable(value = "productsList", key = "#page + '-' + #size + '-' + #sortBy")
+//    @Cacheable(value = "productsList", key = "'page' + 0 + 'size' + 10 + 'sortBy' + #id")
     public Page<ProductDTO> getAllProducts(int page, int size, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
         return productRepository.findAll(pageable).map(product -> modelmapper.map(product, ProductDTO.class));
     }
 
     //Method to retrieve a product using the specific id of the product
+    @Cacheable(value = "products", key = "#id")
     public ProductDTO getProductById(Long id){
         Product product = productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product Not Found"));
         return convertToDTO(product);
     }
 
     //Method to update the existing information of a product
+    @CachePut(value = "products", key = "#id")
+    @CacheEvict(value = {"productsList"}, allEntries = true)
     public ProductDTO updateProduct(Long id, ProductDTO productDetails){
         Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product Not Found"));
 
@@ -54,6 +63,7 @@ public class ProductService {
     }
 
     //Method to delete an existing product using the particular id of it
+    @CacheEvict(value = {"products", "productsList"}, key = "#id", allEntries = true)
     public void deleteProduct(Long id){
         Product product = productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product Not Found"));
         productRepository.delete(product);
