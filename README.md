@@ -49,7 +49,7 @@ Finally we have to access the secured API and since we have already set up the t
 ![Accessing secured API](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/537abbe9-58c0-4234-8a02-da7a10dea461)
 
 ### How to access different pages when calling getProducts method
-Use the getproduct url and additionally add the following line to ot and u can change the number in the page to get the page to view the page you want and page number starts with 0 which means to access page 1 you should put 0 infront of page in the URL.
+Use the getproduct url and additionally add the following line to it additionally. You can change the number in the page to view the page you want and page number starts with 0 which means to access page 1 you should put 0 infront of page in the URL.
 
 ![Accessing Elements by pagination](https://github.com/yaween-desilva/SpringBoot-CRUD/assets/172358358/f3146def-9daf-4504-83e0-1d8cb8417205)
 
